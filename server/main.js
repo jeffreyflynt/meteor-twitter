@@ -1,14 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-const url = require("url");
-const path = require("path");
-const base = process.env.PWD
 const DOWNLOAD_DIR = '####';
 const DOWNLOAD_DIR2 = '####';
-const download = require('file-download')
-const data = require('fs');
+const download = require('file-download');
+const Twitter = require('twitter');
 
 export const Tweets = new Mongo.Collection('tweets');
+
+const client = new Twitter({
+  consumer_key: '',
+  consumer_secret: '',
+  access_token_key: '',
+  access_token_secret: ''
+});
+
+const stream = client.stream('statuses/filter', {track: '', locations: ''});
 
 const bound = Meteor.bindEnvironment((callback) => {callback();});
 
@@ -41,17 +47,6 @@ const downloadMedia = (link) => {
   });
   return fileName;
 };
-
-const Twitter = require('twitter');
-
-const client = new Twitter({
-  consumer_key: '',
-  consumer_secret: '',
-  access_token_key: '',
-  access_token_secret: ''
-});
-
-const stream = client.stream('statuses/filter', {track: '', locations: ''});
 
 stream.on('data', function(tweet) {
   bound(() => {

@@ -5,12 +5,9 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.42",
+    "@babel/runtime": "^7.0.0-beta.46",
     "file-download": "^0.1.2",
-    "fs": "0.0.1-security",
-    "meteor-node-stubs": "^0.3.2",
-    "path": "^0.12.7",
-    "twitter": "^1.7.1",
-    "url": "^0.11.0"
+    "meteor-node-stubs": "^0.3.3",
+    "twitter": "^1.7.1"
   }
 }
